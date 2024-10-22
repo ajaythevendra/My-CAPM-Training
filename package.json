@@ -1,0 +1,48 @@
+{
+  "name": "e_Learning",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js/hana": "^1",
+    "@sap/cds": "^8",
+    "@sap/xssec": "^4",
+    "express": "^4"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "build": {
+      "tasks": [
+        {
+          "for": "hana",
+          "dest": "../db"
+        },
+        {
+          "for": "node-cf"
+        }
+      ]
+    },
+    "requires": {
+      "auth": {
+        "kind": "mocked"
+      },
+      "db": {
+        "kind": "hana-cloud"
+      },
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
+      }
+    },
+    "sql": {
+      "native_hana_associations": false
+    }
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^8"
+  }
+}
